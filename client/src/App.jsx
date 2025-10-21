@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Create from './pages/Create';
 import Edit from './pages/Edit';
 import Read from './pages/Read';
+import Delete from './pages/Delete';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/create" element={<Create />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/user/:id" element={<Read />} />
+        <Route path="/delete/:id" element={<Delete />} />
       </Routes>
     </Router>
   )
