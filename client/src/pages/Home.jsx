@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -41,10 +41,14 @@ const Home = () => {
                 :
                 <div>
                     {users.map((user) => (
-                        <div>
-                            <h1 className="text-2xl">{user.name}</h1>
-                            <p>{user.age}</p>
-                            <p className="text-gray-500">{user.email}</p>
+                        <div key={user._id} className="border w-[400px] p-[10px] rounded-xl mt-[10px]">
+                            <Link to={`/user/${user._id}`}>
+                                <h1 className="text-2xl">{user.name}</h1>
+                                <p>Age: {user.age}</p>
+                                <p className="text-gray-500">{user.email}</p>
+                            </Link>
+                            <button onClick={() => navigate(`/edit/${user._id}`)} className="w-[100px] h-[50px] bg-blue-400 hover:bg-blue-500 transition-all cursor-pointer rounded-xl mr-[10px]">Edit</button>
+                            <button onClick={() => navigate(`/delete/${user._id}`)} className="w-[100px] h-[50px] bg-red-400 hover:bg-red-500 transition-all cursor-pointer rounded-xl">Delete</button>
                         </div>
                     ))}
                 </div>
