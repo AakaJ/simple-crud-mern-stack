@@ -2,12 +2,15 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose"
-import Users from "./modules/users.module.js";
-const corsOptions = {
-    origin: ["http://localhost:5173"],
-}
-const app = express();
 dotenv.config();
+import Users from "./modules/users.module.js";
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173"
+const corsOptions = {
+    origin: [FRONTEND_URL],
+}
+
+const app = express();
+
 const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
