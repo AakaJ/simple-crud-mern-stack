@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose"
 dotenv.config();
 import Users from "./modules/users.module.js";
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173"
+const FRONTEND_URL = process.env.FRONTEND_URL;
 const corsOptions = {
     origin: [FRONTEND_URL],
 }
