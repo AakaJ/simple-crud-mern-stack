@@ -5,9 +5,30 @@ import mongoose from "mongoose"
 dotenv.config();
 import Users from "./modules/users.module.js";
 const FRONTEND_URL = process.env.FRONTEND_URL;
+
+// Production-ready CORS options
+// - Allows the FRONTEND_URL configured in the environment
+// - Allows common local dev origins (http://localhost:5173 and http://localhost:3000)
+// - Allows requests without an Origin (server-to-server, curl, mobile apps)
+const allowedOrigins = new Set();
+if (FRONTEND_URL) allowedOrigins.add(FRONTEND_URL);
+allowedOrigins.add("http://localhost:5173");
+allowedOrigins.add("http://localhost:3000");
+allowedOrigins.add("https://simple-crud-mern-stack.vercel.app")
+
 const corsOptions = {
-    origin: [FRONTEND_URL],
-}
+    origin: function (origin, callback) {
+        // If there's no origin (e.g., non-browser request) allow it
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.has(origin)) {
+            return callback(null, true);
+        } else {
+            console.warn(`Blocked CORS request from origin: ${origin}`);
+            return callback(new Error('Not allowed by CORS'));
+        }
+    }
+};
 
 const app = express();
 
