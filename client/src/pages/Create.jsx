@@ -33,6 +33,7 @@ const Create = () => {
     return (
         <div>
             <form onSubmit={addUser} className='w-[800px] border rounded-xl p-[10px] flex flex-col items-center mr-auto ml-auto mt-[100px]'>
+                <h1 className="text-3xl">Add User</h1>
                 <input type="text" placeholder="Enter name" onChange={(e) => setValues({...values, name: e.target.value})} required className="bg-gray-100 w-[600px] h-[50px] p-[10px] rounded-xl outline-0 border-0" />
                 <input type="number" placeholder="Enter age" onChange={(e) => setValues({...values, age: e.target.value})} required className="bg-gray-100 w-[600px] h-[50px] p-[10px] rounded-xl outline-0 border-0 mt-[10px]" />
                 <input type="email" placeholder="Enter email" onChange={(e) => setValues({...values, email: e.target.value})} required className="bg-gray-100 w-[600px] h-[50px] p-[10px] rounded-xl outline-0 border-0 mt-[10px]" />
